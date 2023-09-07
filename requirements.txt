@@ -25,7 +25,6 @@ pandas==1.4.2
 Pillow==9.1.0
 psycopg2==2.9.3
 pycparser==2.21
-pypiwin32==223
 python-dateutil==2.8.2
 pytz==2022.1
 pywin32==303
