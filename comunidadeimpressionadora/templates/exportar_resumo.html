@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<h1> Tela de exportar resumo </h1>
+
+{%for projeto in programados %}
+    {{ projeto.statusprojeto }}
+{% endfor%}
+{%for projeto in corretivas %}
+    {{ projeto.statusprojeto }}
+{% endfor%}
+
+
+{% endblock %}

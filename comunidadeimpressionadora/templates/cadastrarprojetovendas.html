@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% if current_user.username == "Elisio Carlos Santana" or "Amaury Junior" or "Claudenir Oliveira" or "Ricardo Gaspar": %}
+<div class="container">
+        <div class="row">
+            <hr>
+            <div class="col">
+                <form method="POST" action="" class="border p-4 mt-2">
+                    {{ form_cadastrovendas.csrf_token }}
+                    <fieldset>
+                        <legend>Cadastro de Projeto</legend>
+                        <div class="container">
+                          <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    {{ form_cadastrovendas.mbes.label(class="form-check-label") }}
+                                    {% if form_cadastrovendas.mbes.errors %}
+                                        {{ form_cadastrovendas.mbes(class="form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for erro in form_cadastrovendas.mbes.errors %}
+                                                    {{ erro }}
+                                                {% endfor %}
+                                            </div>
+                                    {% else %}
+                                        {{ form_cadastrovendas.mbes(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_cadastrovendas.medcmprevisto.label(class="form-check-label") }}
+                                    {% if form_cadastrovendas.medcmprevisto.errors %}
+                                        {{ form_cadastrovendas.medcmprevisto(class="form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for erro in form_cadastrovendas.medcmprevisto.errors %}
+                                                    {{ erro }}
+                                                {% endfor %}
+                                            </div>
+                                    {% else %}
+                                        {{ form_cadastrovendas.medcmprevisto(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_cadastrovendas.statusprojeto.label(class="form-check-label") }}
+                                    {% if form_cadastrovendas.statusprojeto.errors %}
+                                        {{ form_cadastrovendas.statusprojeto(class="form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for erro in form_cadastrovendas.statusprojeto.errors %}
+                                                    {{ erro }}
+                                                {% endfor %}
+                                            </div>
+                                    {% else %}
+                                        {{ form_cadastrovendas.statusprojeto(class="form-control") }}
+                                    {% endif %}
+                                <div class="form-group">
+                                    {{ form_cadastrovendas.telefone.label(class="form-check-label") }}
+                                    {% if form_cadastrovendas.telefone.errors %}
+                                        {{ form_cadastrovendas.telefone(class="form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for erro in form_cadastrovendas.telefone.errors %}
+                                                    {{ erro }}
+                                                {% endfor %}
+                                            </div>
+                                    {% else %}
+                                        {{ form_cadastrovendas.telefone(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                    <div class="form-group">
+                                    <hr>
+                                    <p>Status Comercial:</p>
+                                        {% for campo in form_cadastrovendas %}
+                                            {% if 'detalhe3' in campo.name %}
+                                                <div class="form-group">
+                                                    {{ campo(class="form-check-input")}}
+                                                    {{ campo.label(class="form-check-label") }}
+                                                </div>
+                                            {% endif%}
+                                        {% endfor%}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                    <div class="form-group">
+                                        {{ form_cadastrovendas.datacontrato.label(class="form-check-label") }}
+                                        {% if form_cadastrovendas.datacontrato.errors %}
+                                            {{ form_cadastrovendas.datacontrato(class="form-control is-invalid") }}
+                                                <div class="invalid-feedback">
+                                                    {% for erro in form_cadastrovendas.datacontrato.errors %}
+                                                        {{ erro }}
+                                                    {% endfor %}
+                                                </div>
+                                        {% else %}
+                                            {{ form_cadastrovendas.datacontrato(class="form-control") }}
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form_cadastrovendas.prazofixo.label(class="form-check-label") }}
+                                        {% if form_cadastrovendas.prazofixo.errors %}
+                                            {{ form_cadastrovendas.prazofixo(class="form-control is-invalid") }}
+                                                <div class="invalid-feedback">
+                                                    {% for erro in form_cadastrovendas.prazofixo.errors %}
+                                                        {{ erro }}
+                                                    {% endfor %}
+                                                </div>
+                                        {% else %}
+                                            {{ form_cadastrovendas.prazofixo(class="form-control") }}
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form_cadastrovendas.medesquadprevisto.label(class="form-check-label") }}
+                                        {% if form_cadastrovendas.medesquadprevisto.errors %}
+                                            {{ form_cadastrovendas.medesquadprevisto(class="form-control is-invalid") }}
+                                                <div class="invalid-feedback">
+                                                    {% for erro in form_cadastrovendas.medesquadprevisto.errors %}
+                                                        {{ erro }}
+                                                    {% endfor %}
+                                                </div>
+                                        {% else %}
+                                            {{ form_cadastrovendas.medesquadprevisto(class="form-control") }}
+                                        {% endif %}
+
+                                        <hr>
+                                        <p>Gestor:</p>
+                                            {% for campo in form_cadastrovendas %}
+                                                {% if 'detalhe4_' in campo.name %}
+                                                    <div class="form-group">
+                                                        {{ campo(class="form-check-input")}}
+                                                        {{ campo.label(class="form-check-label") }}
+                                                    </div>
+                                                {% endif%}
+                                            {% endfor%}
+                                        <hr>
+                                        <p>Tipo de Serviço:</p>
+                                        {% for campo in form_cadastrovendas %}
+                                            {% if 'detalhe2_' in campo.name %}
+                                                <div class="form-group">
+                                                    {{ campo(class="form-check-input")}}
+                                                    {{ campo.label(class="form-check-label") }}
+                                                </div>
+                                            {% endif%}
+                                        {% endfor%}
+                                    </div>
+                            </div>
+                          <div class="col">
+                            <div class="form-group">
+                                {{ form_cadastrovendas.vendedor.label(class="form-check-label") }}
+                                {% if form_cadastrovendas.vendedor.errors %}
+                                    {{ form_cadastrovendas.vendedor(class="form-control is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for erro in form_cadastrovendas.vendedor.errors %}
+                                                {{ erro }}
+                                            {% endfor %}
+                                        </div>
+                                {% else %}
+                                    {{ form_cadastrovendas.vendedor(class="form-control") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form_cadastrovendas.envorcamento.label(class="form-check-label") }}
+                                {% if form_cadastrovendas.envorcamento.errors %}
+                                    {{ form_cadastrovendas.envorcamento(class="form-control is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for erro in form_cadastrovendas.envorcamento.errors %}
+                                                {{ erro }}
+                                            {% endfor %}
+                                        </div>
+                                {% else %}
+                                    {{ form_cadastrovendas.envorcamento(class="form-control") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form_cadastrovendas.guiacmgerado.label(class="form-check-label") }}
+                                {% if form_cadastrovendas.guiacmgerado.errors %}
+                                    {{ form_cadastrovendas.guiacmgerado(class="form-control is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for erro in form_cadastrovendas.guiacmgerado.errors %}
+                                                {{ erro }}
+                                            {% endfor %}
+                                        </div>
+                                {% else %}
+                                    {{ form_cadastrovendas.guiacmgerado(class="form-control") }}
+                                {% endif %}
+                            </div>
+
+                            <hr>
+                                <p>Composição da Equipe:</p>
+                                    {% for campo in form_cadastrovendas %}
+                                        {% if 'detalhe1_' in campo.name %}
+                                            <div class="form-group">
+                                                {{ campo(class="form-check-input")}}
+                                                {{ campo.label(class="form-check-label") }}
+                                            </div>
+                                        {% endif%}
+                                    {% endfor%}
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                        <div class="form-group">
+                                {{ form_cadastrovendas.crm.label(class="form-check-label") }}
+                                {% if form_cadastrovendas.crm.errors %}
+                                        {{ form_cadastrovendas.crm(class="form-control is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for erro in form_cadastrovendas.crm.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                        </div>
+                                {% else %}
+                                    {{ form_cadastrovendas.crm(class="form-control") }}
+                                {% endif %}
+                        </div>
+                        <div class="form-group">
+                                {{ form_cadastrovendas.observacaoinstalacao.label(class="form-check-label") }}
+                                {% if form_cadastrovendas.observacaoinstalacao.errors %}
+                                        {{ form_cadastrovendas.observacaoinstalacao(class="form-control is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for erro in form_cadastrovendas.observacaoinstalacao.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                        </div>
+                                {% else %}
+                                    {{ form_cadastrovendas.observacaoinstalacao(class="form-control") }}
+                                {% endif %}
+                        </div>
+                        <div class="form-group">
+                                {{ form_cadastrovendas.observacaoprojeto.label(class="form-check-label") }}
+                                {% if form_cadastrovendas.observacaoprojeto.errors %}
+                                        {{ form_cadastrovendas.observacaoprojeto(class="form-control is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for erro in form_cadastrovendas.observacaoprojeto.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                        </div>
+                                {% else %}
+                                    {{ form_cadastrovendas.observacaoprojeto(class="form-control") }}
+                                {% endif %}
+                        </div>
+                        <div class="form-group">
+                                {{ form_cadastrovendas.observacaoproducao.label(class="form-check-label") }}
+                                {% if form_cadastrovendas.observacaoproducao.errors %}
+                                        {{ form_cadastrovendas.observacaoproducao(class="form-control is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for erro in form_cadastrovendas.observacaoproducao.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                        </div>
+                                {% else %}
+                                    {{ form_cadastrovendas.observacaoproducao(class="form-control") }}
+                                {% endif %}
+                        </div>
+                        <div>
+                            {{ form_cadastrovendas.botao_submit_criarprojeto(class="btn btn-primary") }}
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+</div>
+{% endif %}
+{% endblock %}

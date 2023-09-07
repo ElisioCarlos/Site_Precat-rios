@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+        <div class="container">
+            <h1>Usuários</h1>
+            {% for usuario in lista_usuarios %}
+                <div class="container mt-2">
+                        <div class="d-flex align-items-center">
+                            <div class="image pe-2"> <img src="{{ url_for('static', filename='fotos_perfil/{}'.format(usuario.foto_perfil)) }}" class="rounded" width="100"> </div>
+                                <div class="ml-3 w-100">
+                                    <h4 class="mb-0 mt-0">{{ usuario.username }}</h4> <span>{{ usuario.email }}</span>{{ usuario.senha }}
+                                        <div class="col col-15" style="text-align: left">
+                                            <strong>Cursos:</strong><br>
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'PGR' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'PCMSO' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'Seguro' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'Contrato Parceiro' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'CNH' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'Ficha EPI' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'ASO' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'NR 01-OS' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'NR 06 - TREI EPI' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'NR 07 - 1º SOCORROS' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'NR 10 - INST ELET' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'NR 18 - INTEGRACÃO' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'NR 18 - PTA' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'NR 23 - BRIGADISTA' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'NR 33 - ESP CONF' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'NR 35 - TRABALHO' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'NR 35 - TRABALHO+RESGATE EM ALTURA' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}<br>
+                                            <strong>Habilitações:</strong><br>
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'GE Tesseg' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'GE LM TESSEG' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'GE CAMAÇARI' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'ÔMEGA' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'VESTAS' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'CÚBICO' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'STATKRAFT' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                                {% for curso in usuario.cursos.split(';') %}
+                                                {% if curso == 'OBRA SOFT' %}
+                                                    <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                                                {% endif %}
+                                                {% endfor %}
+                                            <br>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+            {% endfor %}
+        </div>
+{% endblock %}

@@ -1,0 +1,385 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+       <div class="border p-4 mt-2">
+        <h1 style="color: orange">Plataforma RICALL - Controle de Projetos e Produção
+        <h2> </h2>
+            <hr>
+        <div class="row">
+            <div class="col">
+                <form method="POST" action="" class="border p-4 mt-2">
+                    {{ form_cadastrovendas.csrf_token }}
+                    <legend></legend>
+
+                            {{ form_cadastrovendas.botao_submit_1_Medição(class="btn btn-primary") }}       {{ medicao }}
+                            {{ form_cadastrovendas.botao_submit_guiafabricacao(class="btn btn-primary") }}  {{ medicao5 }}
+                            {{ form_cadastrovendas.botao_submit_producaoesquad(class="btn btn-primary") }}  {{ medicao3 }}
+                            {{ form_cadastrovendas.botao_submit_producaocm(class="btn btn-primary") }}      {{ medicao2 }}
+                            {{ form_cadastrovendas.botao_submit_2_Medição(class="btn btn-primary") }}       {{ medicao1 }}
+                            {{ form_cadastrovendas.botao_submit_produzido(class="btn btn-primary") }}       {{ medicao6 }}
+                            {{ form_cadastrovendas.botao_submit_retrabalho(class="btn btn-primary") }}      {{ medicao7 }}
+                            {{ form_cadastrovendas.botao_submit_curtaduracao(class="btn btn-primary") }}    {{ medicao12 }}
+                            {{ form_cadastrovendas.botao_submit_substituicao(class="btn btn-primary") }}    {{ medicao13 }}
+                            {{ form_cadastrovendas.botao_submit_eminstalacao(class="btn btn-primary") }}    {{ medicao8 }}
+                            {{ form_cadastrovendas.botao_submit_import(class="btn btn-primary") }}          {{ medicao9 }}
+                            {{ form_cadastrovendas.botao_submit_export(class="btn btn-primary") }}          {{ medicao10 }}
+                            {{ form_cadastrovendas.botao_submit_pendente(class="btn btn-primary") }}        {{ medicao11 }}
+
+                    <fieldset>
+                        <h2 style="color: blue"> {{ xyz }}</h2>
+                        {% for projeto in projetos %}
+                            {% if xyz == 'Programado'%}
+                            <div class="row border mt-4 meupost">
+                                    <div class="col col-1">
+                                        <a style="text-decoration: none" href="{{ url_for('editar_projeto', id_mbes=projeto.id) }}"> <h10>{{ projeto.id }}</h10></a>
+                                    </div>
+                                    <div class="col col-1">
+                                        <p>Cliente: {{ projeto.mbes }}</p>
+                                    </div>
+                                    <div class="col col-1">
+                                        <p>Site: {{ projeto.datacontrato }}</p>
+                                    </div>
+                                    <div class="col col-2">
+                                        <p>Site Manager: {{ projeto.vendedor }}</p>
+                                    </div>
+                                    <div class="col col-3">
+                                        <p>Observação de instalação: {{ projeto.observacaoinstalacao }}</p>
+                                    </div>
+                                    <div class="col col-3">
+                                        <p>Observação do Material: {{ projeto.observacaoproducao }}</p>
+                                    </div>
+                            </div>
+                            {% endif %}
+                            {% if xyz == 'Concluído'%}
+                            <div class="row border mt-4 meupost">
+                                    <div class="col col-1">
+                                        <a style="text-decoration: none" href="{{ url_for('editar_projeto', id_mbes=projeto.id) }}"> <h10>{{ projeto.id }}</h10></a>
+                                    </div>
+                                    <div class="col col-1">
+                                        <p>Cliente: {{ projeto.mbes }}</p>
+                                    </div>
+                                    <div class="col col-1">
+                                        <p>Site: {{ projeto.datacontrato }}</p>
+                                    </div>
+                                    <div class="col col-2">
+                                        <p>Site Manager: {{ projeto.vendedor }}</p>
+                                    </div>
+                                    <div class="col col-3">
+                                        <p>Observação de instalação: {{ projeto.observacaoinstalacao }}</p>
+                                    </div>
+                                    <div class="col col-3">
+                                        <p>Observação do Material: {{ projeto.observacaoproducao }}</p>
+                                    </div>
+
+                            </div>
+                            {% endif %}
+
+                            {% if xyz == 'Preventiva'%}
+                            <div class="row">
+                                        {% for detalhe in projeto.detalhes.split(';') %}
+                                            {% if 'Preventiva' in detalhe and projeto.statusprojeto != 'Concluído'%}
+                                            <div class="row border mt-4 meupost">
+                                                <div class="col col-1">
+                                                    <a style="text-decoration: none" href="{{ url_for('editar_projeto', id_mbes=projeto.id) }}"> <h10>{{ projeto.id }}</h10></a>
+                                                </div>
+                                                <div class="col col-1">
+                                                    <p>Cliente: {{ projeto.mbes }}</p>
+                                                </div>
+                                                <div class="col col-1">
+                                                    <p>Site: {{ projeto.datacontrato }}</p>
+                                                </div>
+                                                <div class="col col-2">
+                                                    <p>Site Manager: {{ projeto.vendedor }}</p>
+                                                </div>
+                                                <div class="col col-3">
+                                                    <p>Observação de instalação: {{ projeto.observacaoinstalacao }}</p>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+                            </div>
+                            {% endif %}
+                            {% if xyz == 'Corretiva'%}
+                            <div class="row">
+                                        {% for detalhe in projeto.detalhes.split(';') %}
+                                            {% if 'Corretiva' in detalhe and projeto.statusprojeto != 'Concluído'%}
+                                            <div class="row border mt-4 meupost">
+                                                <div class="col col-1">
+                                                    <a style="text-decoration: none" href="{{ url_for('editar_projeto', id_mbes=projeto.id) }}"> <h10>{{ projeto.id }}</h10></a>
+                                                </div>
+                                                <div class="col col-1">
+                                                    <p>Cliente: {{ projeto.mbes }}</p>
+                                                </div>
+                                                <div class="col col-1">
+                                                    <p>Site: {{ projeto.datacontrato }}</p>
+                                                </div>
+                                                <div class="col col-2">
+                                                    <p>Site Manager: {{ projeto.vendedor }}</p>
+                                                </div>
+                                                <div class="col col-3">
+                                                    <p>Observação de instalação: {{ projeto.observacaoinstalacao }}</p>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+                            </div>
+
+                            {% endif %}
+                            {% if xyz == 'Projetos em Pré-Venda'%}
+                            <div class="row">
+                                        {% for detalhe in projeto.detalhes.split(';') %}
+                                            {% if 'Pré Venda' in detalhe and projeto.statusprojeto != 'Concluído'%}
+                                            <div class="row border mt-4 meupost">
+                                                <div class="col col-1">
+                                                    <a style="text-decoration: none" href="{{ url_for('editar_projeto', id_mbes=projeto.id) }}"> <h10>{{ projeto.id }}</h10></a>
+                                                </div>
+                                                <div class="col col-2">
+                                                    <p>Cliente: {{ projeto.mbes }}</p>
+                                                </div>
+                                                <div class="col col-2">
+                                                    <p>Gestor responsável: {{ projeto.datapedidoperfil }}</p>
+                                                </div>
+                                                <div class="col col-5">
+                                                    <p>Observação CRM: {{ projeto.crm }}</p>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+
+
+                            </div>
+                            {% endif %}
+
+                            {% if xyz == 'Amaury Junior'%}
+                            <div class="row">
+                                        {% for detalhe in projeto.detalhes.split(';') %}
+                                            {% if 'Amaury Junior' in detalhe and projeto.statusprojeto != 'Concluído'%}
+                                            <div class="row border mt-4 meupost">
+                                                <div class="col col-1">
+                                                    <a style="text-decoration: none" href="{{ url_for('editar_projeto', id_mbes=projeto.id) }}"> <h10>{{ projeto.id }}</h10></a>
+                                                </div>
+                                                <div class="col col-1">
+                                                    <p>Cliente: {{ projeto.mbes }}</p>
+                                                </div>
+                                                <div class="col col-1">
+                                                    <p>Site: {{ projeto.datacontrato }}</p>
+                                                </div>
+                                                <div class="col col-2">
+                                                    <p>Site Manager: {{ projeto.vendedor }}</p>
+                                                </div>
+                                                <div class="col col-3">
+                                                    <p>Observação de instalação: {{ projeto.observacaoinstalacao }}</p>
+                                                </div>
+                                                <div class="col col-3">
+                                                    <p>Observação do Material: {{ projeto.observacaoproducao }}</p>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+                            </div>
+                            {% endif %}
+                            {% if xyz == 'Claudenir'%}
+                            <div class="row">
+                                        {% for detalhe in projeto.detalhes.split(';') %}
+                                            {% if 'Claudenir' in detalhe and projeto.statusprojeto != 'Concluído'%}
+                                            <div class="row border mt-4 meupost">
+                                                <div class="col col-1">
+                                                    <a style="text-decoration: none" href="{{ url_for('editar_projeto', id_mbes=projeto.id) }}"> <h10>{{ projeto.id }}</h10></a>
+                                                </div>
+                                                <div class="col col-1">
+                                                    <p>Cliente: {{ projeto.mbes }}</p>
+                                                </div>
+                                                <div class="col col-1">
+                                                    <p>Site: {{ projeto.datacontrato }}</p>
+                                                </div>
+                                                <div class="col col-2">
+                                                    <p>Site Manager: {{ projeto.vendedor }}</p>
+                                                </div>
+                                                <div class="col col-3">
+                                                    <p>Observação de instalação: {{ projeto.observacaoinstalacao }}</p>
+                                                </div>
+                                                <div class="col col-3">
+                                                    <p>Observação do Material: {{ projeto.observacaoproducao }}</p>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+                            </div>
+                            {% endif %}
+                        {% if xyz == 'Elísio'%}
+                            <div class="row">
+                                        {% for detalhe in projeto.detalhes.split(';') %}
+                                            {% if 'Elísio' in detalhe and projeto.statusprojeto != 'Concluído'%}
+                                            <div class="row border mt-4 meupost">
+                                                <div class="col col-1">
+                                                    <a style="text-decoration: none" href="{{ url_for('editar_projeto', id_mbes=projeto.id) }}"> <h10>{{ projeto.id }}</h10></a>
+                                                </div>
+                                                <div class="col col-1">
+                                                    <p>Cliente: {{ projeto.mbes }}</p>
+                                                </div>
+                                                <div class="col col-1">
+                                                    <p>Site: {{ projeto.datacontrato }}</p>
+                                                </div>
+                                                <div class="col col-2">
+                                                    <p>Site Manager: {{ projeto.vendedor }}</p>
+                                                </div>
+                                                <div class="col col-3">
+                                                    <p>Observação de instalação: {{ projeto.observacaoinstalacao }}</p>
+                                                </div>
+                                                <div class="col col-3">
+                                                    <p>Observação do Material: {{ projeto.observacaoproducao }}</p>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+                            </div>
+                            {% endif %}
+                            {% if xyz == 'Araújo'%}
+                            <div class="row">
+                                        {% for detalhe in projeto.detalhes.split(';') %}
+                                            {% if 'Araújo' in detalhe and projeto.statusprojeto != 'Concluído'%}
+                                            <div class="row border mt-4 meupost">
+                                                <div class="col col-1">
+                                                    <a style="text-decoration: none" href="{{ url_for('editar_projeto', id_mbes=projeto.id) }}"> <h10>{{ projeto.id }}</h10></a>
+                                                </div>
+                                                <div class="col col-1">
+                                                    <p>Cliente: {{ projeto.mbes }}</p>
+                                                </div>
+                                                <div class="col col-1">
+                                                    <p>Site: {{ projeto.datacontrato }}</p>
+                                                </div>
+                                                <div class="col col-2">
+                                                    <p>Site Manager: {{ projeto.vendedor }}</p>
+                                                </div>
+                                                <div class="col col-3">
+                                                    <p>Observação do CRM: {{ projeto.crm }}</p>
+                                                </div>
+                                                <div class="col col-3">
+                                                    <p>Observação de instalação: {{ projeto.observacaoinstalacao }}</p>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+                            </div>
+                            {% endif %}
+                            {% if xyz == 'Marcelo'%}
+                            <div class="row">
+                                        {% for detalhe in projeto.detalhes.split(';') %}
+                                            {% if 'Marcelo' in detalhe and projeto.statusprojeto != 'Concluído'%}
+                                            <div class="row border mt-4 meupost">
+                                                <div class="col col-1">
+                                                    <a style="text-decoration: none" href="{{ url_for('editar_projeto', id_mbes=projeto.id) }}"> <h10>{{ projeto.id }}</h10></a>
+                                                </div>
+                                                <div class="col col-1">
+                                                    <p>Cliente: {{ projeto.mbes }}</p>
+                                                </div>
+                                                <div class="col col-1">
+                                                    <p>Site: {{ projeto.datacontrato }}</p>
+                                                </div>
+                                                <div class="col col-2">
+                                                    <p>Site Manager: {{ projeto.vendedor }}</p>
+                                                </div>
+                                                <div class="col col-3">
+                                                    <p>Observação de instalação: {{ projeto.observacaoinstalacao }}</p>
+                                                </div>
+                                                <div class="col col-3">
+                                                    <p>Observação do Material: {{ projeto.observacaoproducao }}</p>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+                            </div>
+                            {% endif %}
+                            {% if xyz == 'Campos'%}
+                            <div class="row">
+                                        {% for detalhe in projeto.detalhes.split(';') %}
+                                            {% if 'Campos' in detalhe and projeto.statusprojeto != 'Concluído'%}
+                                            <div class="row border mt-4 meupost">
+                                                <div class="col col-1">
+                                                    <a style="text-decoration: none" href="{{ url_for('editar_projeto', id_mbes=projeto.id) }}"> <h10>{{ projeto.id }}</h10></a>
+                                                </div>
+                                                <div class="col col-1">
+                                                    <p>Cliente: {{ projeto.mbes }}</p>
+                                                </div>
+                                                <div class="col col-1">
+                                                    <p>Site: {{ projeto.datacontrato }}</p>
+                                                </div>
+                                                <div class="col col-2">
+                                                    <p>Site Manager: {{ projeto.vendedor }}</p>
+                                                </div>
+                                                <div class="col col-3">
+                                                    <p>Observação de instalação: {{ projeto.observacaoinstalacao }}</p>
+                                                </div>
+                                                <div class="col col-3">
+                                                    <p>Observação do Material: {{ projeto.observacaoproducao }}</p>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+                            </div>
+                            {% endif %}
+                        {% if xyz == 'Curta Duração'%}
+                            <div class="row">
+                                        {% for detalhe in projeto.detalhes.split(';') %}
+                                            {% if 'Curta Duração' in detalhe and projeto.statusprojeto != 'Concluído'%}
+
+                                            <div class="col col-1">
+                                                <a style="text-decoration: none" href="{{ url_for('editar_projeto', id_mbes=projeto.id) }}"> <h10>{{ projeto.id }}</h10></a>
+                                            </div>
+                                            <div class="col col-1">
+                                                <p>Cliente: {{ projeto.mbes }}</p>
+                                            </div>
+                                            <div class="col col-1">
+                                                <p>Site: {{ projeto.datacontrato }}</p>
+                                            </div>
+                                            <div class="col col-2">
+                                                <p>Site Manager: {{ projeto.vendedor }}</p>
+                                            </div>
+                                            <div class="col col-3">
+                                                <p>Observação de instalação: {{ projeto.observacaoinstalacao }}</p>
+                                            </div>
+                                            <div class="col col-3">
+                                                <p>Observação do Material: {{ projeto.observacaoproducao }}</p>
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+                            </div>
+                            {% endif %}
+                        {% if xyz == 'Substituição'%}
+                            <div class="row">
+                                        {% for detalhe in projeto.detalhes.split(';') %}
+                                            {% if 'Substituição' in detalhe and projeto.statusprojeto != 'Concluído'%}
+
+                                            <div class="col col-1">
+                                                <a style="text-decoration: none" href="{{ url_for('editar_projeto', id_mbes=projeto.id) }}"> <h10>{{ projeto.id }}</h10></a>
+                                            </div>
+                                            <div class="col col-1">
+                                                <p>Cliente: {{ projeto.mbes }}</p>
+                                            </div>
+                                            <div class="col col-1">
+                                                <p>Site: {{ projeto.datacontrato }}</p>
+                                            </div>
+                                            <div class="col col-2">
+                                                <p>Site Manager: {{ projeto.vendedor }}</p>
+                                            </div>
+                                            <div class="col col-3">
+                                                <p>Observação de instalação: {{ projeto.observacaoinstalacao }}</p>
+                                            </div>
+                                            <div class="col col-3">
+                                                <p>Observação do Material: {{ projeto.observacaoproducao }}</p>
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

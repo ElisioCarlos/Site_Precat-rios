@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% if current_user.is_authenticated %}
+    <!doctype html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Quicksearch e bootstrap</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+<body>
+</body>
+</html>
+ <div class="form-group input-group">
+	<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+	<input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
+ </div>
+ <table id="tabela" class="table table-hover">
+  <thead>
+  	<tr>
+
+  		<th>ID</th>
+		<th>Cliente</th>
+		<th>Nome do Site</th>
+  		<th>Site Manag/Tell</th>
+		<th>Responsável da Atividade</th>
+  		<th>Status do Projeto</th>
+		<th>Quantidade de Repetidora</th>
+		<th>Quantidade de terminais</th>
+		<th>Observação para instalação</th>
+		<th>Observação de Despacho</th>
+
+  	</tr>
+  </thead>
+  <tbody>
+			{% for projeto in projetos %}
+			{% if projeto.statusprojeto != "Concluído" %}
+				<tr>
+					<th>{{ projeto.id }}</th>
+					<th>{{ projeto.mbes }}</th>
+					<td>{{ projeto.datacontrato }}</td>
+					<td>{{ projeto.vendedor }}</td>
+						{% for detalhe in projeto.detalhes.split(';'): %}
+							{% if 'Amaury' in detalhe:%}
+								<td>{{ "Amaury" }}</td>
+							{% endif %}
+						{% endfor %}
+					<td>{{ projeto.statusprojeto}}</td>
+					<td>{{ projeto.prazofixo}}</td>
+					<td>{{ projeto.envorcamento}}</td>
+					<td>{{ projeto.observacaoinstalacao }}</td>
+					<td>{{ projeto.observacaoproducao }}</td>
+
+
+
+				</tr>
+				</tr>
+			{% endif %}
+			{% endfor %}
+  </tbody>
+	 </table>
+ <script>
+ 	$('input#txt_consulta').quicksearch('table#tabela tbody tr');
+ </script>
+{% else %}
+<h1>Faça Login</h1>
+{% endif %}
+{% endblock %}
